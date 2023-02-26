@@ -1,0 +1,27 @@
+.LoginForm {
+    min-width: 200px;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    background: #549688;
+    .title {
+        padding: 15px;
+        font-size: 20px;
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+    }
+    .form {
+        margin-top: 15px;
+    }
+    .login-form-forgot{
+        color: #9ed900;
+    }
+    .login-form-checkbox{
+        color: #ffffff;
+    }
+}

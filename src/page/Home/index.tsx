@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { FC } from 'react'
 import { Button } from 'antd'
 import reactLogo from '@/assets/react.svg'
+import './index.scss';
 
 const Home: FC = () => {
   const [count, setCount] = useState(0)
@@ -9,7 +10,7 @@ const Home: FC = () => {
     console.log(import.meta.env)
   },[])
   return (
-    <div className="App">
+    <div className="Home">
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src="/vite.svg" className="logo" alt="Vite logo" />
