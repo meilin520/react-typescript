@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ParticlesComponent from './components/ParticlesComponent';
 import LoginForm from './components/LoginForm';
+import { getSession } from "@/utils/tools";
 import './index.scss';
 
 const BaseLayout: FC = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        let token = sessionStorage.getItem("token");
+        let token = getSession("token");
         if(token) navigate("/");
     })
     return (

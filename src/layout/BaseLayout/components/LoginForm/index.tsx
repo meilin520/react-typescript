@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { setSession } from "@/utils/tools";
 import './index.scss';
 
 const LoginForm: FC = () => {
@@ -11,7 +12,7 @@ const LoginForm: FC = () => {
     const onFinish = (values: any): void => {
         console.log('接收到的值',values)
         // 本地保存账号，拼接时间戳作为临时token
-        sessionStorage.setItem('token', values.username + new Date().getTime());
+        setSession('token', values.username + new Date().getTime());
         // 跳转首页
         navigate("/");
     }

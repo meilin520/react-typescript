@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { removeSession } from "@/utils/tools";
 import { Layout, Menu, theme, Dropdown, Space, Avatar } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, AppstoreOutlined, UserOutlined, VideoCameraOutlined, MailOutlined } from '@ant-design/icons';
 import { DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import "./index.scss";
 import { ItemType } from "antd/es/menu/hooks/useItems";
+import PropTypes from 'prop-types'
 const { Header, Sider, Content } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -88,7 +90,7 @@ const MainLayout: React.FC = () => {
   const onDropDownClick: MenuProps['onClick'] = ({ key }) => {
     console.info(`Click on item ${key}`);
     if(key==='loginout'){
-      sessionStorage.removeItem('token');
+      removeSession('token');
       setTimeout(()=>{navigate("/login");}, 1500)
     }
   };
@@ -97,13 +99,13 @@ const MainLayout: React.FC = () => {
     <div className="MainLayout">
       <Layout className="main-layout">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo">
+          <div className="system-logo">
             {!collapsed?"Admin管理系统": "Admin"}
           </div>
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={['0']}
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onMenuClick}
