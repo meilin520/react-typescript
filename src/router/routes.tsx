@@ -1,31 +1,33 @@
 // 路由表
 import type { RouteObject } from 'react-router-dom'
-import type { FC, ReactNode } from 'react';
-import MainLayout from 'layout/MainLayout';
-import BaseLayout from 'layout/BaseLayout';
+import React from 'react';
 
-import Home from '@/page/Home';
+// 首页及登录页面需要直接加载
+import MainLayout from '@/layout/MainLayout';
+import BaseLayout from '@/layout/BaseLayout';
 
-const LoadElement = (Element: FC): ReactNode =>{
-    return (
-        <Element />
-    )
-}
+// 采用懒加载提高用户体验
+const Home = React.lazy(() => import('@/page/Home'));
+const ArticlesList = React.lazy(() => import( '@/page/Articles/ArticlesList'));
 
 const routes: RouteObject[] = [
     {
         path: "/",
-        element: LoadElement(MainLayout),
+        element: <MainLayout/>,
         children: [
             {
                 path: '',
                 element: <Home />,
+            },
+            {
+                path: 'ArticlesList',
+                element: <ArticlesList />,
             }
         ]
     },
     {
         path: "/login",
-        element: LoadElement(BaseLayout),
+        element: <BaseLayout />,
     }
 ]
 

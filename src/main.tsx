@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom';
 import router from '@/router';
 import '@/assets/style/reset.scss';
 import App from './App'
 import './index.scss'
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Spin } from 'antd';
 import 'antd/dist/reset.css';
 import theme from '@/theme';
 
@@ -14,9 +14,11 @@ import theme from '@/theme';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider theme={theme}>
-      <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
+      <Suspense>
+        <RouterProvider router={router}>
+          <App />
+        </RouterProvider>
+      </Suspense>
     </ConfigProvider>
 
   </React.StrictMode>,

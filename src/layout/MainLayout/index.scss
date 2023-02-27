@@ -1,6 +1,6 @@
 .MainLayout {
     text-align: left;
-    height: 100vh;
+    height: 100%;
     .main-layout{
         height: inherit;
     }
@@ -19,5 +19,11 @@
     }
     .header-setting{
         float: right;
+    }
+    .header-avatar{
+        border: 1px solid #bbbbbb;
+        &:hover{
+            box-shadow: 5px 3px 5px #999999;
+        }
     }
 }
