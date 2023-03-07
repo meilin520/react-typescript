@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { Button } from 'antd'
 import reactLogo from '../../assets/images/react.svg';
 import './index.scss';
+import Hello from '@/components/exmaple/containers/Hello';
 
 const Home: FC = () => {
   const [count, setCount] = useState(0)
@@ -27,9 +28,10 @@ const Home: FC = () => {
         </div>
         <h1>Vite + React + Redux + TypeScript + Ant Design</h1>
         <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
+          {/* <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
-          </button>
+          </button> */}
+          <Hello />
           <p>
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>

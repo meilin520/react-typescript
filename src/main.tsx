@@ -6,7 +6,7 @@ import router from '@/router';
 import '@/assets/style/reset.scss';
 import App from './App'
 import './index.scss'
-import { ConfigProvider, Spin } from 'antd';
+import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import theme from '@/theme';
 import store from '@/redux';
@@ -16,13 +16,16 @@ import store from '@/redux';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider theme={theme}>
-      <Suspense>
-        <RouterProvider router={router} />
-          <Provider store={store}>
-            <App />
-          </Provider>
-      </Suspense>
-    </ConfigProvider>
 
-  </React.StrictMode>,
+      <Suspense>
+      <Provider store={store}>
+
+        <RouterProvider router={router} />
+            <App />
+      </Provider>
+
+      </Suspense>
+
+    </ConfigProvider>
+  </React.StrictMode>
 )
