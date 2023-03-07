@@ -1,19 +1,21 @@
 import Hello from "../Hello";
-import * as actions from '@/redux/actions';
-import { StoreState } from "@/types";
-import { connect, Dispatch } from "react-redux";
+import { HelloStoreState, IntersectionStateType } from "@/types";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { EnthusiasmAction, incrementEnthusiasm, decrementEnthusiasm } from '@/redux/actions';
 
-export const mapStateToProps = ({ enthusiasmLevel, languageName}: StoreState) => {
+const mapStateToProps = (state: IntersectionStateType ) => {
+    const { enthusiasmLevel, languageName }: HelloStoreState = state.enthusiasm;
     return {
         enthusiasmLevel,
         name: languageName,
     };
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch<actions.EnthusiasmAction>) => {
+const mapDispatchToProps = (dispatch: Dispatch<EnthusiasmAction>) => {
     return {
-        onIncrement: () => dispatch(actions.incrementEnthusiasm()),
-        onDecrement: () => dispatch(actions.decrementEnthusiasm()),
+        onIncrement: () => dispatch(incrementEnthusiasm()),
+        onDecrement: () => dispatch(decrementEnthusiasm()),
     }
 }
 

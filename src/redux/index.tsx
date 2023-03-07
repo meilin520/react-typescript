@@ -1,11 +1,6 @@
 import { createStore } from "redux";
-import { enthusiasm } from './reducers';
-import { StoreState } from "@/types";
+import reducers from "./reducers";
 
-
-const store = createStore<StoreState>(enthusiasm, {
-    enthusiasmLevel: 1,
-    languageName: 'Typescript'
-});
+const store = createStore(reducers);
 
 export default store;

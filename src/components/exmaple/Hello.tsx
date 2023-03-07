@@ -13,9 +13,11 @@ const getExclamationMarks = (numChars: number) =>{
 }
 
 const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}:Props) =>{
-    if(enthusiasmLevel <= 0) {
-        throw new Error("You could be a little more enthusiastic. :D")
-    }
+    // if(enthusiasmLevel <= 0) {
+    //     throw new Error("You could be a little more enthusiastic. :D")
+    // }
+    console.log(getExclamationMarks(enthusiasmLevel));
+    
     return (
         <div className='hello'>
             <div className='greeting'>
