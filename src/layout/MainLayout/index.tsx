@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { removeSession } from "@/utils/tools";
+import { getSession, removeSession, setSession } from "@/utils/tools";
 import { Layout, Menu, theme, Dropdown, Space, Avatar } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, AppstoreOutlined, UserOutlined, VideoCameraOutlined, MailOutlined } from '@ant-design/icons';
 import { DownOutlined } from '@ant-design/icons';
@@ -58,8 +58,12 @@ const items: MenuProps['items'] = [
 const rootSubmenuKeys = ['sub1', 'sub2'];
 
 const MainLayout: React.FC = () => {
+
+  const _defaultSelectedKeys = getSession('defaultSelectedKeys')||['0'];
+
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [openKeys, setOpenKeys] = useState<string[]>(['sub1']);
+  const [defaultSelectedKeys, setDefaultSelectedKeys] = useState<string[]>(_defaultSelectedKeys);
 
   const navigate = useNavigate();
 
@@ -67,11 +71,10 @@ const MainLayout: React.FC = () => {
     token: { colorBgContainer }
   } = theme.useToken();
 
-
   useEffect(() => {
-    let token = sessionStorage.getItem("token");
-    if (!token) navigate("/login");
-  })
+    let _token = getSession("token");
+    if (!_token) navigate("/login");
+  }, [])
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -83,7 +86,10 @@ const MainLayout: React.FC = () => {
   }
 
   const onMenuClick = ({key, keyPath,item}: any): void => {
-    console.log(key, keyPath, item)
+    console.log(key, keyPath,item);
+    
+    setDefaultSelectedKeys([key]);
+    setSession('defaultSelectedKeys', [key]);
     item?.props?.path&&navigate(item.props.path)
   }
 
@@ -105,7 +111,7 @@ const MainLayout: React.FC = () => {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['0']}
+            defaultSelectedKeys={defaultSelectedKeys}
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onMenuClick}
@@ -135,6 +141,7 @@ const MainLayout: React.FC = () => {
               margin: '24px 16px',
               padding: 24,
               minHeight: 280,
+              overflowY: 'scroll',
               background: colorBgContainer,
             }}
           >
