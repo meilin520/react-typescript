@@ -5,10 +5,9 @@ import axios, { AxiosRequestHeaders } from "axios";
 import { message } from 'antd';
 
 const { timeout } = config;
-const { VITE_SERVER_HOST, VITE_SERVER_PORT } = import.meta.env;
 
 axios.defaults.timeout = timeout;
-axios.defaults.baseURL = `${VITE_SERVER_HOST}:${VITE_SERVER_PORT}`;
+
 
 // 请求拦截器
 
