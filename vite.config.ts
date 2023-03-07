@@ -13,7 +13,6 @@ export default defineConfig({
       "@layout": path.resolve(__dirname, "src/layout"),
       "@components": path.resolve(__dirname, "src/components"),
       "@router": path.resolve(__dirname, "src/router")
-<<<<<<< HEAD
     }
   },
   server: {
@@ -25,8 +24,6 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/,""),
       }
-=======
->>>>>>> e18d150e851f49d4b77174c0c79b632a4b589137
     }
   },
   // define: {
